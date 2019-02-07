@@ -1,0 +1,186 @@
+######################################################
+##                        I3                        ##
+##                                                  ##
+##   ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗  ##
+##  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝  ##
+##  ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗ ##
+##  ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║ ##
+##  ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝ ##
+##   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝  ##
+##                                                  ##
+##                            ~/.config/i3/config   ##
+######################################################
+
+# Variable pour définir la touche principale par défaut
+set $mod Mod4
+
+# Police pour les titres des fenêtres
+font pango:DejaVu Sans Mono 8
+
+# Utiliser Mouse+$mod pour déplacer la fenêtre flotante
+floating_modifier $mod
+
+# Démarrer le terminal urxvt via son daemon
+bindsym $mod+Return exec urxvtc
+
+# Kill la fenêtre en cours
+bindsym $mod+Shift+A kill
+
+# Démarrer le lanceur d'applications rofi
+bindsym $mod+d exec rofi -show run
+
+# Navigation entre les fenêtres
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+m focus right
+
+# Navigation alternatif entre les fenêtres
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Déplacement de la position d'une fenêtre
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+M move right
+
+# Déplacement alternatif de la position d'une fenêtre
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Spliter en orientation horizontale
+bindsym $mod+h split h
+
+# Spliter en orientation verticale
+bindsym $mod+v split v
+
+# Mode plein écran pour la fenêtre en cours
+bindsym $mod+f fullscreen toggle
+
+# Modifier la disposition du conteneur (empilé, onglet, à bascule)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# Changer le mode de la fenêtre en flotant ou revenir en fixe
+bindsym $mod+Shift+space floating toggle
+
+# Sélectionner entre une fenêtre flotante et une fixe
+bindsym $mod+space focus mode_toggle
+
+# Sélectionner le conteneur parent
+bindsym $mod+q focus parent
+
+# Variables pour définir le nom de chaque espace de travail
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Changer d'espace de travail
+bindsym $mod+ampersand workspace $ws1
+bindsym $mod+eacute workspace $ws2
+bindsym $mod+quotedbl workspace $ws3
+bindsym $mod+apostrophe workspace $ws4
+bindsym $mod+parenleft workspace $ws5
+bindsym $mod+minus workspace $ws6
+bindsym $mod+egrave workspace $ws7
+bindsym $mod+underscore workspace $ws8
+bindsym $mod+ccedilla workspace $ws9
+bindsym $mod+agrave workspace $ws10
+
+# Déplacer une fenêtre vers un espace de travail
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+eacute move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+egrave move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+ccedilla move container to workspace $ws9
+bindsym $mod+Shift+agrave move container to workspace $ws10
+
+# Recharger la configuration
+bindsym $mod+Shift+c reload
+
+# Redémarrer i3 (conserve les conteneurs)
+bindsym $mod+Shift+r restart
+
+# Quitter i3 (déconnecte de la session X)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Vous avez appuyé sur le raccourci de sortie. Voulez-vous vraiment quitter i3? Cela mettra fin à votre session X.' -b 'Oui, quitter i3' 'i3-msg exit'"
+
+# Fonction pour définir les touches pour le mode redimensionnement
+mode "resize" {
+        # Touches du mode redimensionnement
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym m resize grow width 10 px or 10 ppt
+
+        # Touches alternatives du mode redimensionnement
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Sortir du mode redimenssionement
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# Mode de redimensionnement pour la fenêtre en cours
+bindsym $mod+r mode "resize"
+
+# Customisation apparence
+# Espacement entre les fenêtres
+gaps inner 15
+gaps outer 5
+
+# Couleurs
+# Déclarations des attributs $fg et $bg
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# Attributions des couleurs aux classes
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# Suppression des bordures pour toutes les fenêtres
+for_window [class="^.*"] border pixel 0
+
+# Suppression des gaps pour les fenêtres seules en plein écran
+smart_gaps on
+smart_borders on
+
+# Affecter certaines applications à des espaces de travail spécifique
+# Google Chrome
+assign [class="Google-chrome"] $ws3
+
+# Spotify
+assign [class="Spotify"] $ws4
+for_window [class="Spotify"] move to workspace $ws4
+
+# Steam
+assign [class="Steam"] $ws5
+
+# Discord
+assign [class="discord"] $ws6

@@ -1,0 +1,30 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!                        X                         !!
+!!                                                  !!
+!!   ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗  !!
+!!  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝  !!
+!!  ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗ !!
+!!  ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║ !!
+!!  ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝ !!
+!!   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝  !!
+!!                                                  !!
+!!                                  ~/.Xresources   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Bordure interne pour URxvt
+URxvt*internalBorder:	10
+
+! Police pour URxvt
+URxvt*font:		xft:DejaVuSansMono Nerd Font:pixelsize=12:antialias=true:hinting=true
+URxvt*boldFont:		xft:DejaVuSansMono Nerd Font:style=Bold:pixelsize=12:antialias=true:hinting=true
+URxvt*letterSpace:	0
+
+! Pas de barre de défilement
+URxvt*scrollBar:	False
+
+! Extension Perl pour gérer les liens cliquables
+URxvt*perl-ext-common:	default,matcher
+URxvt*urlLauncher:	/usr/bin/xdg-open
+
+! Valeurs possibles pour option matcher: 1=clic gauche, 2=clic milieu, 3=clic droit
+URxvt*matcher.button:	3

@@ -1,0 +1,188 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                     POLYBAR                      ;;
+;;                                                  ;;
+;;   ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗  ;;
+;;  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝  ;;
+;;  ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗ ;;
+;;  ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║ ;;
+;;  ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝ ;;
+;;   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝  ;;
+;;                                                  ;;
+;;                       ~/.config/polybar/config   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Paramètres des couleurs
+[colors]
+background = ${xrdb:Polybar*background:#222}
+background-alt = ${xrdb:color0:#444}
+foreground = ${xrdb:color7:#dfdfdf}
+foreground-alt = ${xrdb:color7:#555}
+primary = ${xrdb:color1:#ffb52a}
+secondary = ${xrdb:color2:#e60053}
+alert = ${xrdb:color3:#bd2c40}
+
+; Paramètres de la barre du haut
+[bar/top]
+width = 100%
+height = 27
+fixed-center = true 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0 
+padding-right = 2 
+
+module-margin-left = 1
+module-margin-right = 2 
+
+; Police principale et alternative avec offset vertical pour centrer le texte
+font-0 = fixed:pixelsize=10;2
+font-1 = DejaVuSansMono Nerd Font:pixelsize=12;2
+
+; Emplacement et ordre des modules
+modules-left = i3 xwindow
+;modules-center =
+modules-right = memory cpu temperature eth pulseaudio date powermenu
+
+; Icônes système
+;tray-position = right
+;tray-padding = 2 
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+; Module affichage du nom de la fenêtre en cours
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+; Module pour le gestionnaire de fenêtres i3
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; Bureau affiché
+label-focused = %icon%
+label-focused-background = ${colors.background-alt}
+label-focused-foreground = ${colors.primary}
+label-focused-padding = 2
+
+; Bureau non affiché
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+; Bureau en urgence
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;阮
+ws-icon-4 = 5;戮
+ws-icon-5 = 6;ﭮ
+ws-icon-default = 
+
+; Module ressources processeur
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "﬙ "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage:2%%
+
+; Module ressources mémoire
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used%%
+
+; Module réseau local
+[module/eth]
+type = internal/network
+interface = enp8s0
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected-prefix = " " 
+format-disconnected-prefix-foreground = ${colors.secondary}
+label-disconnected = %ifname%
+
+; Module date et heure
+[module/date]
+type = internal/date
+interval = 5
+
+date-alt = " %d/%m/%Y"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+; Module gestion du volume pulseaudio
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume =  墳 %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+label-muted = ﱝ
+label-muted-foreground = ${colors.foreground}
+
+; Module affichage temperature globale du pc
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-warn = <label-warn>
+
+label = 﨎 %temperature-c%
+label-warn =  %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+; Module arrêt ou redémarrage du pc
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 襤
+label-open-foreground = ${colors.secondary}
+label-close = ﰸ 
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = ﰇ
+menu-0-0-exec = reboot
+menu-0-1 = ﮤ
+menu-0-1-exec = poweroff
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
