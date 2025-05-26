@@ -1,5 +1,7 @@
 # 🧩 i3wm Dotfiles
 
+[![Project Status: Archived](https://img.shields.io/badge/status-archived-lightgrey.svg)](https://github.com/joan31/dotfiles-i3wm)
+
 ## ⚠️ Archived - No longer maintained
 
 This repository contains my old configuration files for **i3wm** window managers.
