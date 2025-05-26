@@ -23,6 +23,6 @@ I have since moved on to a different window manager / setup.
 
 ---
 
-### License
+## 📦 License
 
 MIT – See [LICENSE](LICENSE) for details.
